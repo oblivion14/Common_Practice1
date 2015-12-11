@@ -27,47 +27,36 @@ public class MapData {
 
     ExtractData extractData = new ExtractData();
 
-    public void writeDataToMap(String url){
+    Map<String, String> uriInfo = new HashMap<String, String>();
+
+    public Map<String, String> writeDataToMap(String url){
 
         String afterProtocol = protocolFinder.validationExcludeProtocol(url);
 
         urlModel.setProtocol(protocolFinder.validationProtocol(url));
 
-        Map<String, String> protocolInfo = new HashMap<String, String>();
-
-        protocolInfo.put("protocolName", urlModel.getProtocol());
+        uriInfo.put("protocolName", urlModel.getProtocol());
 
 
 
         urlModel.setHostName(hostFinder.findHost(afterProtocol));
 
-        Map<String, String> hostInfo = new HashMap<String, String>();
-
-        hostInfo.put("HostName" , urlModel.getHostName());
+        uriInfo.put("HostName" , urlModel.getHostName());
 
 
         urlModel.setPortNumber(portFinder.findPort(afterProtocol));
 
-        Map<String, String> portNumberInfo = new HashMap<String, String>();
-
-        portNumberInfo.put("PortNumber" , urlModel.getPortNumber());
+        uriInfo.put("PortNumber" , urlModel.getPortNumber());
 
 
         urlModel.setSubProject(subProjectFinder.findSubProject(afterProtocol));
 
-        Map<String, String> subProjectInfo= new HashMap<String, String>();
+        uriInfo.put("SubProject" , urlModel.getSubProject());
 
-        subProjectInfo.put("SubProject" , urlModel.getSubProject());
-
-        System.out.println(protocolInfo);
-
-        System.out.println(hostInfo);
-
-        System.out.println(portNumberInfo);
-
-        System.out.println(subProjectInfo);
 
         extractData.extractData(urlModel.getSubProject());
+
+        return uriInfo;
 
 
     }
