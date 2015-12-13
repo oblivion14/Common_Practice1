@@ -29,7 +29,7 @@ public class ChangeArrayData {
             }
 
 
-        System.out.println(basicText);
+
 
         return basicText;
 

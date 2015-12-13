@@ -29,7 +29,9 @@ public class CalendarParsing {
 
             String[] afterYear= {""+year , ""+month , ""+day, ""+hour, ""+minute, ""+second, amPmStr};
 
-            changeArrayData.changeArrToStr(format, beforeYear, afterYear);
+            String changeSentence = changeArrayData.changeArrToStr(format, beforeYear, afterYear);
+
+            return changeSentence;
         }
 
         else {
@@ -39,7 +41,9 @@ public class CalendarParsing {
 
             String[] afterYear = {"" + year, "" + month, "" + day, "" + hour, "" + minute, "" + second};
 
-            changeArrayData.changeArrToStr(format, beforeYear, afterYear);
+            String changeSentence = changeArrayData.changeArrToStr(format, beforeYear, afterYear);
+
+            return changeSentence;
         }
 
 //        String changeYear = changeData.changeData(format, beforeYear, afterYear);
@@ -57,8 +61,6 @@ public class CalendarParsing {
 //
 //
 //        System.out.println(simpleDateFormat.format(now));
-
-    return null;
 
     }
 
