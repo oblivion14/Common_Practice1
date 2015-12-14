@@ -20,7 +20,7 @@ public class CalendarParsingTest {
 
         String changeSentence = calendarParsing.getData(calendar, "yyyy-MM-dd hh:mm:ss(aa)");
         System.out.println(changeSentence);
-        
+
         String changeSentence1 = calendarParsing.getData(calendar, "yyyy년 MM월 dd일, hh시 mm분 ss초 (aa)");
         System.out.println(changeSentence1);
 
