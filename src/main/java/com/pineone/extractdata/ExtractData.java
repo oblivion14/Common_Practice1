@@ -10,6 +10,11 @@ import java.util.StringTokenizer;
  */
 public class ExtractData {
 
+    public static final String firstDivideChar = "&";
+    public static final String secondDivideChar = "=";
+    public static final String getSubProjectDataChar = "?";
+    public static final String getSubProjectChar = "/";
+
 
     Map<String, String> catchData = new HashMap<>();
 
@@ -18,9 +23,9 @@ public class ExtractData {
         int subProjectLastNum = 0;
         int subProjectStartNum = 0;
 
-        if (fullSubProject.contains("?")) {
-            subProjectLastNum = fullSubProject.indexOf("?");
-            subProjectStartNum = fullSubProject.lastIndexOf("/");
+        if (fullSubProject.contains(getSubProjectDataChar)) {
+            subProjectLastNum = fullSubProject.indexOf(getSubProjectDataChar);
+            subProjectStartNum = fullSubProject.lastIndexOf(getSubProjectChar);
 
 
             String subProjectStr = fullSubProject.substring(subProjectStartNum + 1, subProjectLastNum);
@@ -40,10 +45,10 @@ public class ExtractData {
 
     public Map<String, String> extractEachData(int startNum, String subProject) {
 
-        int lastNumName = subProject.indexOf("=");
+        int lastNumName = subProject.indexOf(secondDivideChar);
         String dataName = subProject.substring(startNum, lastNumName);
 
-        int lastNumValue = subProject.indexOf("&");
+        int lastNumValue = subProject.indexOf(firstDivideChar);
         String valueName = subProject.substring(lastNumName + 1, lastNumValue);
 
 
@@ -52,20 +57,20 @@ public class ExtractData {
 
         String afterSubProject = subProject.substring(lastNumValue + 1, subProject.length());
 
-        for (; afterSubProject.contains("="); ) {
+        for (; afterSubProject.contains(secondDivideChar); ) {
 
 //            if(afterSubProject.isEmpty() == false){
-            if (afterSubProject.contains("&")) {
-                lastNumName = afterSubProject.indexOf("=");
+            if (afterSubProject.contains(firstDivideChar)) {
+                lastNumName = afterSubProject.indexOf(secondDivideChar);
                 dataName = afterSubProject.substring(0, lastNumName);
 
-                lastNumValue = afterSubProject.indexOf("&");
+                lastNumValue = afterSubProject.indexOf(firstDivideChar);
                 valueName = afterSubProject.substring(lastNumName + 1, lastNumValue);
 
                 catchData.put(dataName, valueName);
             } else {
 
-                lastNumName = afterSubProject.indexOf("=");
+                lastNumName = afterSubProject.indexOf(secondDivideChar);
                 dataName = afterSubProject.substring(0, lastNumName);
 
                 lastNumValue = afterSubProject.length();
@@ -88,7 +93,7 @@ public class ExtractData {
 
         ArrayList<String> collectData = new ArrayList<>();
 
-        StringTokenizer stringTokenizer = new StringTokenizer(subProject, "&");
+        StringTokenizer stringTokenizer = new StringTokenizer(subProject, firstDivideChar);
 
         while (stringTokenizer.hasMoreTokens()) {
             collectData.add(stringTokenizer.nextToken());
@@ -102,8 +107,8 @@ public class ExtractData {
             data = collectData.get(i);
 
 
-            if (data.contains("=")) {
-                dataSet = data.split("=");
+            if (data.contains(secondDivideChar)) {
+                dataSet = data.split(secondDivideChar);
             }
 
 //            for (int j = 0; j < dataSet.length; j++) {
