@@ -1,6 +1,7 @@
 package com.pineone.versioncheck;
 
-import com.pineone.versioncheck.model.Platform;
+import com.pineone.parsing.versioncheck.VersionCheck;
+import com.pineone.parsing.versioncheck.model.Platform;
 import org.junit.Test;
 
 /**

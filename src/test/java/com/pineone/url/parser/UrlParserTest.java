@@ -1,8 +1,11 @@
 package com.pineone.url.parser;
 
-import com.pineone.makeDatatoMap.MapData;
-import com.pineone.url.parser.manager.UrlParserManager;
+import com.pineone.network.subprojectparsing.ExtractDataFromSubProject;
+import com.pineone.network.urlparser.manager.UrlParserManager;
+import com.pineone.parsing.makedatatomap.MapData;
 import org.junit.Test;
+
+import java.util.Map;
 
 /**
  * Created by Melvin on 2015. 12. 6..
@@ -14,14 +17,19 @@ public class UrlParserTest {
 
     MapData mapData = new MapData();
 
+    ExtractDataFromSubProject extractDataFromSubProject = new ExtractDataFromSubProject();
+
     @Test
     public void ParserTest() throws Exception {
 
         System.out.println("==================================");
 
         String url = "http://c.pineone.net:48080/hello";
+        Map<String, String> extractDataFromURI = mapData.writeDataToMap(url);
 
-        mapData.writeDataToMap(url);
+        System.out.println(extractDataFromURI);
+
+
 
         System.out.println("==================================");
 
@@ -34,7 +42,9 @@ public class UrlParserTest {
 
         String url = "www.naver.com";
 
-        mapData.writeDataToMap(url);
+        Map<String, String> extractDataFromURI = mapData.writeDataToMap(url);
+
+        System.out.println(extractDataFromURI);
 
 
         System.out.println("==================================");
@@ -48,7 +58,9 @@ public class UrlParserTest {
 
         String url = "http://www.google.co.kr/helloproject";
 
-        mapData.writeDataToMap(url);
+        Map<String, String> extractDataFromURI = mapData.writeDataToMap(url);
+
+        System.out.println(extractDataFromURI);
 
         System.out.println("==================================");
 

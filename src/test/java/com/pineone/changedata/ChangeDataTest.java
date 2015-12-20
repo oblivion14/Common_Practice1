@@ -1,5 +1,6 @@
 package com.pineone.changedata;
 
+import com.pineone.parsing.changedata.ChangeData;
 import org.junit.Test;
 
 /**

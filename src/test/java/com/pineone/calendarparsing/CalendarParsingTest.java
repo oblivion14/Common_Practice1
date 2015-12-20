@@ -1,6 +1,6 @@
 package com.pineone.calendarparsing;
 
-import com.pineone.calenderparsing.CalendarParsing;
+import com.pineone.parsing.calenderparsing.CalendarParsing;
 import org.junit.Test;
 
 import java.util.Calendar;

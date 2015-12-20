@@ -1,5 +1,6 @@
 package com.pineone.nslookup;
 
+import com.pineone.network.nslookup.NsLookUpManager;
 import org.junit.Test;
 
 /**

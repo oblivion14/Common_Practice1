@@ -1,8 +1,8 @@
 package com.pineone.extract;
 
-import com.pineone.extractdata.ExtractData;
-import com.pineone.makeDatatoMap.MapData;
-import com.pineone.url.parser.manager.UrlParserManager;
+import com.pineone.network.subprojectparsing.ExtractDataFromSubProject;
+import com.pineone.parsing.makedatatomap.MapData;
+import com.pineone.network.urlparser.manager.UrlParserManager;
 import org.junit.Test;
 
 import java.util.Map;
@@ -16,7 +16,7 @@ public class ExtractTest {
 
     MapData mapData = new MapData();
 
-    ExtractData extractData = new ExtractData();
+    ExtractDataFromSubProject extractDataFromSubProject = new ExtractDataFromSubProject();
 
 
     @Test
@@ -26,8 +26,8 @@ public class ExtractTest {
         String sub = "name=한순호&age=30&sex=male";
 
         Map<String, String> extractDataFromURI = mapData.writeDataToMap(url);
-        Map<String, String> extractDataFromSubData = extractData.extractData(url);
-        Map<String, String> extractDataFromSubDataUsingToKen = extractData.useTokenizerExtractData(sub);
+        Map<String, String> extractDataFromSubData = extractDataFromSubProject.extractData(url);
+        Map<String, String> extractDataFromSubDataUsingToKen = extractDataFromSubProject.useTokenizerExtractData(sub);
 
 
         System.out.println("URI 의미 : " + extractDataFromURI);

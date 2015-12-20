@@ -2,7 +2,7 @@ package com.pineone.replacezeroforlength;
 
 import org.junit.Test;
 
-import com.pineone.replacetozeroforlength.StringUtilManager;
+import com.pineone.parsing.replacetozero.StringUtilManager;
 
 /**
  * Created by Melvin on 2015. 12. 10..
