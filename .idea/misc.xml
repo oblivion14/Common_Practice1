@@ -7,6 +7,7 @@
     <option name="name" value="default" />
     <option name="pathToConfigFileJava" value="$PROJECT_DIR$/../../Info/Fommater/eclipse-java-code_formatter-1.0.xml" />
     <option name="selectedJavaProfile" value="formatter_java" />
+    <option name="useOldEclipseJavaFormatter" value="true" />
   </component>
   <component name="EntryPointsManager">
     <entry_points version="2.0" />
