@@ -12,12 +12,18 @@ public class DownHtml {
 
     public void getImage(String uri) throws IOException {
 
-        getHeadAndBodyInfo(uri);
-
         URL url = new URL(uri);
 
-        BufferedInputStream bufferedInputStream = new BufferedInputStream(url.openStream());
-        FileOutputStream fileOutputStream = new FileOutputStream("file1.jpg");
+        HttpURLConnection httpURLConnection = (HttpURLConnection)url.openConnection();
+
+        httpURLConnection.setRequestMethod("GET");
+
+        httpURLConnection.setConnectTimeout(3000);
+
+        httpURLConnection.setReadTimeout(3000);
+
+        BufferedInputStream bufferedInputStream = new BufferedInputStream(httpURLConnection.getInputStream());
+        FileOutputStream fileOutputStream = new FileOutputStream("docker012.png");
         byte[] buffer = new byte[1024];
 
         int n = 0;
@@ -34,17 +40,27 @@ public class DownHtml {
         bufferedInputStream.close();
 
 
+        System.out.println("ResponseBodyCode : " + httpURLConnection.getResponseCode());
+        System.out.println("ResponseHeaderCode" + httpURLConnection.getHeaderFields());
+
 
     }
 
 
     public void getContents(String uri) throws IOException{
 
-        getHeadAndBodyInfo(uri);
 
         URL url = new URL(uri);
 
-        InputStream inputStream = url.openStream();
+        HttpURLConnection httpURLConnection = (HttpURLConnection)url.openConnection();
+
+        httpURLConnection.setRequestMethod("GET");
+
+        httpURLConnection.setConnectTimeout(3000);
+
+        httpURLConnection.setReadTimeout(3000);
+
+        InputStream inputStream = httpURLConnection.getInputStream();
 
        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream, Charset.forName("UTF-8")));
 
@@ -57,20 +73,6 @@ public class DownHtml {
         bufferedReader.close();
         inputStream.close();
 
-
-
-    }
-    public void getHeadAndBodyInfo(String uri) throws IOException{
-
-        URL url = new URL(uri);
-
-        HttpURLConnection httpURLConnection = (HttpURLConnection)url.openConnection();
-
-        httpURLConnection.setRequestMethod("GET");
-
-        httpURLConnection.setConnectTimeout(3000);
-
-        httpURLConnection.setReadTimeout(3000);
 
         System.out.println("ResponseBodyCode : " + httpURLConnection.getResponseCode());
         System.out.println("ResponseHeaderCode" + httpURLConnection.getHeaderFields());
