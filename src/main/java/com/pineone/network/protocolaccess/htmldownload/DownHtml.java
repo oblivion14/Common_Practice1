@@ -4,78 +4,97 @@ import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.nio.charset.Charset;
+import java.nio.charset.MalformedInputException;
 
 /**
  * Created by Melvin on 2015. 12. 20..
  */
 public class DownHtml {
 
-    public void getImage(String uri) throws IOException {
+    public void getImage(String uri)  {
 
-        URL url = new URL(uri);
+        try {
+            URL url = new URL(uri);
 
-        HttpURLConnection httpURLConnection = (HttpURLConnection)url.openConnection();
+            HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
 
-        httpURLConnection.setRequestMethod("GET");
+            httpURLConnection.setRequestMethod("GET");
 
-        httpURLConnection.setConnectTimeout(3000);
+            httpURLConnection.setConnectTimeout(3000);
 
-        httpURLConnection.setReadTimeout(3000);
+            httpURLConnection.setReadTimeout(3000);
 
-        BufferedInputStream bufferedInputStream = new BufferedInputStream(httpURLConnection.getInputStream());
-        FileOutputStream fileOutputStream = new FileOutputStream("docker012.png");
-        byte[] buffer = new byte[1024];
+            BufferedInputStream bufferedInputStream = new BufferedInputStream(httpURLConnection.getInputStream());
+            FileOutputStream fileOutputStream = new FileOutputStream("docker012.png");
+            byte[] buffer = new byte[1024];
 
-        int n = 0;
-        int count = 0;
+            int n = 0;
+            int count = 0;
 
-        while ((n = bufferedInputStream.read(buffer)) != -1) {
-            fileOutputStream.write(buffer, 0, n);
-            fileOutputStream.flush();
-            count += n;
+            while ((n = bufferedInputStream.read(buffer)) != -1) {
+                fileOutputStream.write(buffer, 0, n);
+                fileOutputStream.flush();
+                count += n;
 
+            }
+
+            fileOutputStream.close();
+            bufferedInputStream.close();
+
+
+            System.out.println("ResponseCode : " + httpURLConnection.getResponseCode());
+            System.out.println("ResponseHeaderCode" + httpURLConnection.getHeaderFields());
+        }
+        catch (Exception e){
+            e.printStackTrace();
         }
 
-        fileOutputStream.close();
-        bufferedInputStream.close();
 
-
-        System.out.println("ResponseBodyCode : " + httpURLConnection.getResponseCode());
-        System.out.println("ResponseHeaderCode" + httpURLConnection.getHeaderFields());
 
 
     }
 
 
-    public void getContents(String uri) throws IOException{
+    public void getContents(String uri) {
 
 
-        URL url = new URL(uri);
+        try {
 
-        HttpURLConnection httpURLConnection = (HttpURLConnection)url.openConnection();
 
-        httpURLConnection.setRequestMethod("GET");
+            URL url = new URL(uri);
 
-        httpURLConnection.setConnectTimeout(3000);
+            HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
 
-        httpURLConnection.setReadTimeout(3000);
+            httpURLConnection.setRequestMethod("GET");
 
-        InputStream inputStream = httpURLConnection.getInputStream();
+            httpURLConnection.setConnectTimeout(3000);
 
-       BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream, Charset.forName("UTF-8")));
+            httpURLConnection.setReadTimeout(3000);
 
-        String data = "";
+            InputStream inputStream = httpURLConnection.getInputStream();
 
-        while((data = bufferedReader.readLine())!=null){
-            System.out.println(data);
+            BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream, Charset.forName("UTF-8")));
+
+            String data = "";
+
+            while ((data = bufferedReader.readLine()) != null) {
+                System.out.println(data);
+            }
+
+            bufferedReader.close();
+            inputStream.close();
+
+
+            System.out.println("ResponseCode : " + httpURLConnection.getResponseCode());
+            System.out.println("ResponseHeaderCode" + httpURLConnection.getHeaderFields());
+
         }
-
-        bufferedReader.close();
-        inputStream.close();
-
-
-        System.out.println("ResponseBodyCode : " + httpURLConnection.getResponseCode());
-        System.out.println("ResponseHeaderCode" + httpURLConnection.getHeaderFields());
+        catch (MalformedInputException e){
+            e.printStackTrace();
+        }
+        catch (IOException e){
+            e.printStackTrace();
+        }
 
 
     }
