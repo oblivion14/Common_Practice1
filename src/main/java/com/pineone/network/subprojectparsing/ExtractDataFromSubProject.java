@@ -7,9 +7,16 @@ import java.util.StringTokenizer;
 
 /**
  * Created by Melvin on 2015. 12. 10..
+ *
+ * URL 의 SubProject 에 데이터의 정보가 포함되어 있으면 추출하여 Map 형태로 제공해준다.
  */
 public class ExtractDataFromSubProject {
 
+    /**
+     * "/" 이후와 "?" 이전의 내용을 SubProject 의 이름으로 구분하고 "?" 다음은 데이터의 묶음.
+     *  Data 묶음 단위로 나누기 위해서 & 를 구분자로 넣고, 정보 = 값 으로 나누기 위해 "="를 다음 구분자로 제공한다.
+     *
+     */
     public static final String firstDivideChar = "&";
     public static final String secondDivideChar = "=";
     public static final String getSubProjectDataChar = "?";
@@ -24,10 +31,15 @@ public class ExtractDataFromSubProject {
         int subProjectStartNum = 0;
 
         if (fullSubProject.contains(getSubProjectDataChar)) {
-            subProjectLastNum = fullSubProject.indexOf(getSubProjectDataChar);
             subProjectStartNum = fullSubProject.lastIndexOf(getSubProjectChar);
+            subProjectLastNum = fullSubProject.indexOf(getSubProjectDataChar);
 
 
+            /**
+             * "/"와 "?"사이의 내용을 SubProject 의 이름으로 추출해낸다.
+             * ex )
+             * /projects?name=한순호&age=30&sex=male - name : projects
+             */
             String subProjectStr = fullSubProject.substring(subProjectStartNum + 1, subProjectLastNum);
             catchData.put("SubProjectName", subProjectStr);
         }
@@ -46,6 +58,7 @@ public class ExtractDataFromSubProject {
 
 
     }
+
 
     public Map<String, String> extractEachData(int startNum, String subProject) {
 
@@ -97,6 +110,10 @@ public class ExtractDataFromSubProject {
 
         ArrayList<String> collectData = new ArrayList<>();
 
+        /**
+         * StringTokenizer 를 생성하여 "&"를 구분자로 나누어서 ArrayList 에 저장함
+         * name=한순호&age=30&sex=male 일 경우 name=한순호 , age=30 , sex=male 로 나뉜다.
+         */
         StringTokenizer stringTokenizer = new StringTokenizer(subProject, firstDivideChar);
 
         while (stringTokenizer.hasMoreTokens()) {
@@ -106,6 +123,10 @@ public class ExtractDataFromSubProject {
         String[] dataSet = null;
         String data = null;
 
+        /**
+         * 저장되어 있는 데이터들을 "=" 기준으로 정보=값 의 형태로 나뉘어 맵에 저장하여 준다.
+         * Key 는 정보명, Value 는 값
+         */
         for (int i = 0; i < collectData.size(); i++) {
 
             data = collectData.get(i);

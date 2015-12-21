@@ -9,7 +9,15 @@ public class CalendarParsing {
 
     ChangeArrayData changeArrayData = new ChangeArrayData();
 
-    public String getData(Calendar calendar, String format){
+    /**
+     * 캘린더 클래스를 이용하여서 년.월.일 등의 정보를 받아온다.
+     * 출력하고 싶은 달력 출력 포맷형태를 받아서 매핑하여 출력해준다.
+     * @param format
+     * @return
+     */
+    public String getData( String format){
+
+        Calendar calendar = Calendar.getInstance();
 
         int year = calendar.get(Calendar.YEAR); // 년도를 리턴
         int month = calendar.get(Calendar.MONTH) + 1; // 월을 리턴
@@ -21,7 +29,9 @@ public class CalendarParsing {
         int second = calendar.get(Calendar.SECOND); // 초를 리턴
 
 
-
+    /**
+    * "aa"가 있는 경우 AM/PM을 반영한다.
+    */
         if(format.contains("aa")){
             String[] beforeYear = {"yyyy","MM", "dd", "hh", "mm", "ss", "aa"};
 

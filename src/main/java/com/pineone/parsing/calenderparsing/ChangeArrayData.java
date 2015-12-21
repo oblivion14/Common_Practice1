@@ -10,6 +10,9 @@ public class ChangeArrayData {
 
         int count = 0;
 
+        /**
+         * 포맷에 맞추어 등록한 형태에 따라 실제 날자의 값으로 대치하여 전달.
+         */
         for(String data : beforeData) {
 
                 if (basicText.contains(data)) {
