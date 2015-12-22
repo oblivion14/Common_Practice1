@@ -204,6 +204,23 @@ public class WordScramble {
 
         return new String(hint);
     }
+    /**
+     * [정리]
+     *
+     * Math.random() 은 소수점을 반환
+     * int(Math.random() * 정수) 를 해주어야 원하는 값을 얻을 듯.
+     *
+     * .toCharArray();
+     * char[] chArr = str.toCharArray()를 사용하면
+     * str에 담겨있는 String 내용을 Char형으로 쪼개서 Char[]에 담아서 사용 가능.
+     * 사용 ex) String 형 문자 뒤섞기.
+     *
+     * new String(chArr)
+     * chArr.toString (주소값 저장됨) 이 아닌 chArr안에 들어있는 문자들의 실제 내용을 생성
+     *
+     * .CharAt(getNum)
+     * String.CharAt(int a)를 사용하면 String의 Int번째 문자를 뽑아 char형으로 추출
+     */
 }
 
 
